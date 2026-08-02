@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
+    <!-- Encabezado con estilo verde/azul oscuro -->
+    <div class="text-white text-center py-3" style="background-color: #1c5d63;">
+      <h2 class="m-0 fw-bold text-uppercase" style="font-size: 1.5rem; letter-spacing: 1.5px;">Gastos</h2>
+    </div>
+    
+    <!-- Contenedor para los componentes secundarios -->
+    <div class="card-body p-4 bg-light">
+      <div class="row g-4">
+        <!-- Panel Izquierdo: Formulario para añadir gastos -->
+        <div class="col-md-6">
+          <app-ingresar-gasto></app-ingresar-gasto>
+        </div>
+        
+        <!-- Panel Derecho: Visualización y control de gastos -->
+        <div class="col-md-6">
+          <app-listado-gastos></app-listado-gastos>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

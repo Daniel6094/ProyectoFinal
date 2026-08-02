@@ -1,0 +1,45 @@
+<div class="container my-5 d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="max-width: 550px; width: 100%;">
+    
+    <!-- Encabezado -->
+    <div class="text-white text-center py-4 px-3" style="background: linear-gradient(135deg, #1c5d63 0%, #0f383c 100%);">
+      <h3 class="m-0 fw-bold text-uppercase" style="letter-spacing: 1px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-gear-wide-connected me-2" viewBox="0 0 16 16">
+          <path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.187-1.187l-.283.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.187l-.081-.283c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5A4.5 4.5 0 1 0 8.5 12.973 4.5 4.5 0 0 0 12.973 8.5"/>
+        </svg>
+        Operaciones
+      </h3>
+      <p class="small text-white-50 mt-1 mb-0">Seleccione la acción financiera que desea realizar</p>
+    </div>
+
+    <!-- Cuerpo con los 2 botones centrados, uno bajo el otro -->
+    <div class="card-body p-4 p-md-5 bg-light d-flex flex-column align-items-center justify-content-center gap-4">
+      
+      <!-- Botón 1: Crear presupuesto -->
+      <button 
+        type="button" 
+        class="btn btn-action btn-crear w-100 py-3 fs-5 fw-bold rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-3"
+        (click)="irCrearPresupuesto()"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
+          <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542s.987-.254 1.194-.542C9.42 6.644 9.5 6.253 9.5 6a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2z"/>
+          <path d="M16 6.5h-5.551a2.7 2.7 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5s-1.613-.412-2.006-.958A2.7 2.7 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5z"/>
+        </svg>
+        <span>Crear presupuesto</span>
+      </button>
+
+      <!-- Botón 2: Agregar gasto -->
+      <button 
+        type="button" 
+        class="btn btn-action btn-gasto w-100 py-3 fs-5 fw-bold rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-3"
+        (click)="irAgregarGasto()"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+          <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+        </svg>
+        <span>Agregar gasto</span>
+      </button>
+
+    </div>
+  </div>
+</div>

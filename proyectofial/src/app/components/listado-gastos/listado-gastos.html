@@ -1,0 +1,36 @@
+<div class="card border-0 shadow-sm rounded-3">
+  <div class="card-body p-4">
+    <h5 class="card-title text-center fw-bold mb-4">Listado de Gastos</h5>
+    
+    <!-- Tarjetas informativas para el presupuesto total y lo restante -->
+    <div class="row g-3 mb-4">
+      <div class="col-sm-6">
+        <!-- El cuadro de Presupuesto lleva un fondo verdoso suave -->
+        <div class="alert alert-info text-center py-2 px-1 mb-0 border-0 rounded-3 shadow-sm" style="font-size: 0.95rem; font-weight: 500; background-color: #d1e7dd; color: #0f5132;">
+          Presupuesto: <strong class="fs-6">${{ budgetService.presupuesto() }}</strong>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div [className]="budgetService.getRestanteColorClass() + ' text-center py-2 px-1 mb-0 border-0 rounded-3 shadow-sm transition-all'" style="font-size: 0.95rem; font-weight: 500;">
+          Restante: <strong class="fs-6">${{ budgetService.restante() }}</strong>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Historial/Lista con los gastos agregados -->
+    @if (budgetService.gastos().length === 0) {
+      <div class="text-muted text-center py-3">No hay gastos ingresados</div>
+    } @else {
+      <div class="list-group gap-2">
+        @for (gasto of budgetService.gastos(); track gasto.id) {
+          <div class="list-group-item d-flex justify-content-between align-items-center border-0 rounded-3 p-3 shadow-sm bg-white hover-shadow transition-all" style="border: 1px solid #dee2e6 !important;">
+            <span class="fw-semibold text-dark">{{ gasto.nombre }}</span>
+            <span class="badge rounded-pill px-3 py-2 fs-6 text-white" style="background-color: #5a6268;">
+              ${{ gasto.cantidad }}
+            </span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
