@@ -1,0 +1,50 @@
+<div class="card border-0 shadow-sm rounded-3">
+  <div class="card-body p-4">
+    <h5 class="card-title text-center fw-bold mb-4">Ingresar Gasto</h5>
+    
+    <!-- Alerta de error si los datos ingresados no son correctos -->
+    @if (errorMsg()) {
+      <div class="alert alert-danger text-center fw-bold text-uppercase py-2 mb-3 border-0 rounded-2 shadow-sm" style="font-size: 0.8rem; letter-spacing: 0.5px;">
+        {{ errorMsg() }}
+      </div>
+    }
+    
+    <!-- Inputs del formulario -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold text-secondary">Gasto</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Ej: Comida.." 
+        [value]="nombreGasto()"
+        (input)="nombreGasto.set(txtGasto.value)"
+        (change)="nombreGasto.set(txtGasto.value)"
+        #txtGasto
+      />
+    </div>
+    
+    <div class="mb-4">
+      <label class="form-label fw-semibold text-secondary">Cantidad</label>
+      <input 
+        type="number" 
+        class="form-control" 
+        [value]="cantidadGasto()"
+        (input)="cantidadGasto.set(+txtCantidad.value)"
+        (change)="cantidadGasto.set(+txtCantidad.value)"
+        #txtCantidad
+      />
+    </div>
+    
+    <!-- Botón de acción para agregar el registro -->
+    <div class="d-grid">
+      <button 
+        type="button" 
+        class="btn btn-secondary fw-bold text-uppercase py-2 rounded-3 shadow-sm"
+        style="background-color: #5a6268; border: none;"
+        (click)="agregarGasto()"
+      >
+        Agregar Gasto
+      </button>
+    </div>
+  </div>
+</div>

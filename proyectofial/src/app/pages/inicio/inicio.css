@@ -1,0 +1,45 @@
+.inicio-container {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.logo-wrapper {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(135deg, #1c5d63 0%, #0f383c 100%);
+  transition: transform 0.3s ease;
+}
+
+.logo-wrapper:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.title-gradient {
+  background: linear-gradient(45deg, #1c5d63, #2a8a93);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.author-badge {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1 !important;
+}
+
+.ingresar-btn {
+  background: linear-gradient(135deg, #1c5d63 0%, #154549 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.ingresar-btn:hover {
+  background: linear-gradient(135deg, #24757c 0%, #1c5d63 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(28, 93, 99, 0.3) !important;
+}

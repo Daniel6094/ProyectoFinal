@@ -1,0 +1,30 @@
+.btn-action {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.5px;
+}
+
+.btn-crear {
+  background-color: #1c5d63;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-crear:hover {
+  background-color: #154549;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(28, 93, 99, 0.35) !important;
+}
+
+.btn-gasto {
+  background-color: #2b7a78;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-gasto:hover {
+  background-color: #205c5a;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(43, 122, 120, 0.35) !important;
+}

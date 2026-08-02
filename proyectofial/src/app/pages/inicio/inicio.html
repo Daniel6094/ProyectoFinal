@@ -1,0 +1,38 @@
+<div class="inicio-container d-flex justify-content-center align-items-center min-vh-100 p-3">
+  <div class="card glass-card text-center p-4 p-md-5 shadow-lg border-0 rounded-4" style="max-width: 520px; width: 100%;">
+    
+    <!-- Logo de la aplicación -->
+    <div class="logo-wrapper mx-auto mb-4 d-flex justify-content-center align-items-center rounded-circle bg-gradient-primary text-white shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-pie-chart-fill" viewBox="0 0 16 16">
+        <path d="M15.985 8.5A7 7 0 0 1 8.5 15.985V8.5z"/>
+        <path d="M14.5 7A6.5 6.5 0 1 0 8 13.5v-6z"/>
+        <path d="M7.5 0a7.5 7.5 0 0 1 7.5 7.5h-7.5z"/>
+      </svg>
+    </div>
+
+    <!-- Nombre de la Aplicación -->
+    <h1 class="display-5 fw-bold text-dark mb-2 title-gradient">FinanzApp Lite</h1>
+    <p class="text-muted fw-semibold mb-4 fs-6">Sistema Analítico de Finanzas Personales</p>
+    
+    <!-- Nombre del Programador -->
+    <div class="author-badge py-2 px-3 mb-4 rounded-pill d-inline-block border mx-auto">
+      <span class="text-secondary small text-uppercase fw-bold">Programado por:</span>
+      <span class="text-dark fw-bold ms-1">Daniel Alberto Vega Vives</span>
+    </div>
+
+    <!-- Botón Ingresar -->
+    <div class="d-grid gap-2 col-10 mx-auto mt-2">
+      <button 
+        type="button" 
+        class="btn btn-primary btn-lg fw-bold rounded-pill shadow-sm py-3 px-4 text-uppercase ingresar-btn"
+        (click)="ingresar()"
+      >
+        <span class="me-2">Ingresar</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+          <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>

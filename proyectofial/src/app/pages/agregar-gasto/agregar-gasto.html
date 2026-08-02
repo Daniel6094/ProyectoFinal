@@ -1,0 +1,160 @@
+<div class="container mt-4 mb-5">
+  <!-- Botón de regreso a Operaciones -->
+  <div class="mb-3">
+    <button class="btn btn-outline-secondary btn-sm rounded-pill fw-semibold px-3" (click)="volverOperaciones()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-1" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+      </svg>
+      Volver a Operaciones
+    </button>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        
+        <!-- Encabezado con estilo verde/azul -->
+        <div class="text-white text-center py-3 px-4" style="background-color: #2b7a78;">
+          <h3 class="m-0 fw-bold text-uppercase" style="font-size: 1.4rem; letter-spacing: 1px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-plus me-2" viewBox="0 0 16 16">
+              <path d="M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+            </svg>
+            Agregar Gasto
+          </h3>
+          <small class="text-white-50">Registre un nuevo egreso asociándolo a un presupuesto existente</small>
+        </div>
+
+        <div class="card-body p-4 bg-light">
+
+          <!-- Alerta de Error / Validación de Presupuesto Agotado -->
+          @if (errorMsg()) {
+            <div class="alert alert-danger text-center fw-bold text-uppercase py-2 mb-4 border-0 rounded-3 shadow-sm" style="font-size: 0.85rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
+              {{ errorMsg() }}
+            </div>
+          }
+
+          <!-- Alerta de Éxito -->
+          @if (successMsg()) {
+            <div class="alert alert-success text-center fw-bold py-2 mb-4 border-0 rounded-3 shadow-sm" style="font-size: 0.85rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l5.228-5.75A.75.75 0 0 0 12.03 4.97z"/>
+              </svg>
+              {{ successMsg() }}
+            </div>
+          }
+
+          @if (budgetService.presupuestos().length === 0) {
+            <div class="text-center py-4">
+              <div class="alert alert-warning border-0 shadow-sm rounded-3">
+                <h6 class="fw-bold mb-1">No hay presupuestos creados aún</h6>
+                <p class="small mb-3">Para poder registrar un gasto, primero debe crear al menos un presupuesto.</p>
+                <button class="btn btn-dark btn-sm rounded-pill fw-bold" (click)="router.navigate(['/operaciones/crear-presupuesto'])">
+                  Ir a Crear Presupuesto
+                </button>
+              </div>
+            </div>
+          } @else {
+            <form (ngSubmit)="guardarGasto()">
+
+              <!-- Campo 1: Nombre del presupuesto a utilizar (Lista desplegable con todos los presupuestos creados) -->
+              <div class="mb-4">
+                <label class="form-label fw-bold text-dark small text-uppercase">
+                  Nombre del presupuesto a utilizar
+                </label>
+                <select 
+                  class="form-select form-select-lg border-2 rounded-3 shadow-xs"
+                  [ngModel]="presupuestoSeleccionadoId()"
+                  (ngModelChange)="presupuestoSeleccionadoId.set($event)"
+                  name="presupuestoSeleccionado"
+                >
+                  @for (p of budgetService.presupuestos(); track p.id) {
+                    <option [value]="p.id">
+                      {{ p.nombre }} ({{ p.mes }}) - Saldo: ₡{{ p.saldoRestante | number:'1.0-0' }} {{ p.saldoRestante <= 0 ? '[AGOTADO]' : '' }}
+                    </option>
+                  }
+                </select>
+
+                <!-- Tarjeta informativa del presupuesto seleccionado -->
+                @if (presupuestoSeleccionado) {
+                  <div class="p-3 bg-white border rounded-3 mt-2 shadow-xs d-flex justify-content-between align-items-center">
+                    <div>
+                      <small class="text-muted d-block text-uppercase" style="font-size: 0.7rem;">Saldo Disponible</small>
+                      <span 
+                        class="fw-bold fs-5" 
+                        [class.text-danger]="presupuestoSeleccionado.saldoRestante <= 0"
+                        [class.text-success]="presupuestoSeleccionado.saldoRestante > 0"
+                      >
+                        ₡{{ presupuestoSeleccionado.saldoRestante | number:'1.0-0' }}
+                      </span>
+                    </div>
+                    <span 
+                      class="badge rounded-pill fw-bold py-2 px-3"
+                      [class.bg-danger]="presupuestoSeleccionado.saldoRestante <= 0"
+                      [class.bg-success]="presupuestoSeleccionado.saldoRestante > 0"
+                    >
+                      {{ presupuestoSeleccionado.saldoRestante <= 0 ? 'AGOTADO' : 'ACTIVO' }}
+                    </span>
+                  </div>
+                }
+              </div>
+
+              <!-- Campo 2: Categoría del gasto -->
+              <div class="mb-4">
+                <label class="form-label fw-bold text-dark small text-uppercase">
+                  Categoría del gasto
+                </label>
+                <select 
+                  class="form-select form-select-lg border-2 rounded-3 shadow-xs"
+                  [ngModel]="categoria()"
+                  (ngModelChange)="categoria.set($event)"
+                  name="categoriaGasto"
+                >
+                  @for (c of categoriasDisponibles; track c) {
+                    <option [value]="c">{{ c }}</option>
+                  }
+                </select>
+              </div>
+
+              <!-- Campo 3: Monto del gasto -->
+              <div class="mb-4">
+                <label class="form-label fw-bold text-dark small text-uppercase">
+                  Monto del gasto (₡)
+                </label>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text fw-bold bg-white border-2 border-end-0 text-muted">₡</span>
+                  <input 
+                    type="number" 
+                    class="form-control border-2 border-start-0 fs-4 fw-bold rounded-end-3 shadow-xs" 
+                    placeholder="0"
+                    [ngModel]="monto()"
+                    (ngModelChange)="monto.set($event)"
+                    name="montoGasto"
+                    min="1"
+                  />
+                </div>
+              </div>
+
+              <!-- Botón Agregar Gasto -->
+              <div class="d-grid mt-4">
+                <button 
+                  type="submit" 
+                  class="btn btn-lg fw-bold text-uppercase py-3 rounded-3 shadow-sm text-white" 
+                  style="background-color: #2b7a78; border: none;"
+                  [disabled]="presupuestoSeleccionado && presupuestoSeleccionado.saldoRestante <= 0"
+                >
+                  Registrar Gasto
+                </button>
+              </div>
+
+            </form>
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

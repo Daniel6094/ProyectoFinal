@@ -1,0 +1,13 @@
+.budget-item {
+  transition: all 0.2s ease-in-out;
+  border-color: #e2e8f0 !important;
+}
+
+.budget-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.fs-7 {
+  font-size: 0.75rem;
+}
